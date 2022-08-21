@@ -1,0 +1,9 @@
+.env
+.vscode
+node_modules
+wp-content/uploads
+wp-content/cache
+wp-content/upgrade
+wp-content/w3tc-config
+wp-content/themes/interactiveposts/bundles
+wp-config.php
