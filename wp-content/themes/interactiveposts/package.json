@@ -45,6 +45,7 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
+    "@glidejs/glide": "^3.5.2",
     "fullpage.js": "^4.0.9",
     "include-media": "^1.4.10",
     "kemet-ui": "^1.3.1",

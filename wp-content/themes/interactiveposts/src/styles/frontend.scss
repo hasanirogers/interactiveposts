@@ -1,4 +1,5 @@
 @use 'fullpage.js/dist/fullpage';
+@use '@glidejs/glide/src/assets/sass/glide.core';
 
 :root {
   --dashed-border: 2px dashed rgba(255, 255, 255, 0.25);
@@ -10,6 +11,10 @@ body {
   padding: 2rem;
   background-repeat: repeat;
   background-image: url('../images/background.svg');
+}
+
+a {
+  color: #22248d;
 }
 
 body > header svg {
@@ -42,10 +47,18 @@ main > section {
 main > section > div {
   margin-top: 6rem;
   padding: 0 1rem;
+  width: 100%;
+  max-width: 1280px;
+  display: block;
+  align-self: center;
 
   @media screen and (min-width: 768px) {
     margin-top: 4rem;
   }
+}
+
+ main > section[data-anchor="screenshots"] > div {
+  max-width: 100%;
 }
 
 main > section > article {
@@ -120,7 +133,7 @@ ippm-intro {
   }
 
   ippm-button {
-    --background-color: #4c3f83;
+    --background-color: #22248d;
 
     margin-top: 1rem;
     opacity: 0;
@@ -175,6 +188,80 @@ ippm-gallery-container {
     top: 50%;
     right: 1rem;
     transform: translateY(-50%) rotate(270deg);
+  }
+}
+
+ippm-screenshots {
+  display: block;
+  margin-top: -8rem;
+
+  ippm-screenshots-bullets {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 3rem;
+    font-size: 2rem;
+  }
+
+  ippm-screenshots-bullet {
+    cursor: pointer;
+    opacity: 0.75;
+  }
+
+  ippm-screenshots-directional {
+    cursor: pointer;
+    padding: 0 0.25rem;
+  }
+
+  .glide__bullet--active {
+    opacity: 1;
+  }
+
+  .glide__track,
+  .glide__slides {
+    overflow: visible;
+  }
+
+  .glide__track {
+    display: block;
+  }
+
+  .glide__slides {
+    height: 150%;
+    align-items: center;
+  }
+
+  .glide__slide {
+    height: auto;
+    transition: transform 300ms ease;
+  }
+
+  .glide__slide--active {
+    transform: scale(1.5);
+    border-left: 18px solid #5c0029;
+    border-right: 18px solid #5c0029;
+  }
+}
+
+ippm-modal {
+  figure {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    margin: 0;
+    padding: 2rem 1rem;
+    background: white;
+    box-sizing: border-box;
+  }
+
+  img {
+    cursor: pointer;
+    max-width: 100%;
   }
 }
 

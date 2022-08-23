@@ -101,9 +101,9 @@
             'posts_per_page' => 99,
           );
 
-          $spdLoop = new WP_Query( $spdArgs );
+          $spdLoop = new WP_Query($spdArgs);
 
-          while ( $spdLoop->have_posts() ) : $spdLoop->the_post();
+          while ($spdLoop->have_posts()) : $spdLoop->the_post();
             $spdURL = get_post_meta(get_the_ID(), 'url');
             echo '<ippm-demo-card heading="'. get_the_title() .'" excerpt="'. get_the_excerpt() .'" image="'. get_the_post_thumbnail_url() .'" url="'. $spdURL[0] .'"></ippm-demo-card>';
           endwhile;
@@ -115,6 +115,46 @@
   </section>
   <section data-anchor="screenshots">
     <div>
+      <ippm-screenshots class="glide">
+        <ippm-screenshots-track class="glide__track" data-glide-el="track">
+          <ippm-screenshots-slides class="glide__slides">
+            <?php
+              $screenshotsArgs = array(
+                'post_type' => 'screenshots',
+                'post_status' => 'publish',
+                'order' => 'ASC',
+                'posts_per_page' => 99
+              );
+
+              $screenshotsLoop = new WP_Query($screenshotsArgs);
+
+              while ($screenshotsLoop->have_posts()) : $screenshotsLoop->the_post();
+                echo '<ippm-screenshot class="glide__slide" heading="'. get_the_title() .'" image="'. get_the_post_thumbnail_url() .'">'. get_the_content() .'</ippm-screenshot>';
+              endwhile;
+            ?>
+          </ippm-screenshots-slides>
+        </ippm-screenshots-track>
+        <ippm-screenshots-bullets data-glide-el="controls[nav]">
+          <?php
+            $bulletsArgs = array(
+              'post_type' => 'screenshots',
+              'post_status' => 'publish',
+              'order' => 'ASC',
+              'posts_per_page' => 99
+            );
+
+            $index = 0;
+            $bulletsLoop = new WP_Query($bulletsArgs);
+
+            while ($bulletsLoop->have_posts()) : $bulletsLoop->the_post();
+              echo '<ippm-screenshots-bullet data-glide-dir="='. $index .'">■</ippm-screenshots-bullet>';
+              $index += 1;
+            endwhile;
+          ?>
+          <ippm-screenshots-directional data-glide-dir="<">◂</ippm-screenshots-directional>
+          <ippm-screenshots-directional data-glide-dir=">">▸</ippm-screenshots-directional>
+        </ippm-screenshots-bullets>
+      </ippm-screenshots>
     </div>
   </section>
   <section data-anchor="faqs">

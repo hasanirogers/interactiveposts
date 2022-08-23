@@ -2,6 +2,7 @@
 
 // includes
 include_once('inc/post-types/single-page-demos.php');
+include_once('inc/post-types/screenshots.php');
 
 // disable admin bar
 add_filter('show_admin_bar', '__return_false');
