@@ -9,6 +9,11 @@ if (homepage) {
     focusAt: 'center',
     perView: 2,
     gap: 24,
+    breakpoints: {
+      769: {
+        perView: 1
+      },
+    },
   };
   const glide = new Glide('.glide', glideOptions);
 

@@ -1,8 +1,9 @@
 import fullpage from 'fullpage.js';
 
 const homepage = document.querySelector('body.ippm--home');
+const mediaQuery = window.matchMedia('(min-width: 960px)');
 
-if (homepage) {
+if (homepage && mediaQuery.matches) {
   const fullPageInstance = new fullpage('main', {
     sectionSelector: 'main > section',
     navigation: false,

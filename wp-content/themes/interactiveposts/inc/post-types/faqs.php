@@ -1,20 +1,18 @@
 <?php
-  function ippm_post_type_screenshots() {
+  function ippm_post_type_faqs() {
     $labels = [
-      'name'          => 'Screenshots', // Plural name
-      'singular_name' => 'Screenshot'   // Singular name
+      'name'          => 'FAQs', // Plural name
+      'singular_name' => 'FAQ'   // Singular name
     ];
 
     $supports = [
       'title',        // Post title
       'editor',       // Main content
-      'thumbnail',    // Allows feature images
-      'custom-fields' // Supports by custom fields
     ];
 
     $args = [
       'labels'              => $labels,
-      'description'         => 'Single page demo', // Description
+      'description'         => 'Frequently asked questions.', // Description
       'supports'            => $supports,
       'hierarchical'        => false, // Allows hierarchical categorization, if set to false, the Custom Post Type will behave like Post, else it will behave like Page
       'public'              => true,  // Makes the post type public
@@ -32,7 +30,7 @@
       'capability_type'     => 'page', // Allows read, edit, delete like “Post”
     ];
 
-    register_post_type('screenshots', $args);
+    register_post_type('faqs', $args);
   }
 
-  add_action('init', 'ippm_post_type_screenshots');
+  add_action('init', 'ippm_post_type_faqs');

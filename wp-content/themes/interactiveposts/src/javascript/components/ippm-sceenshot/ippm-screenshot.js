@@ -13,12 +13,19 @@ class IPPMScreenshot extends LitElement {
 
         img {
           cursor: pointer;
-          width: 100%;
+          width: auto;
+          margin: auto;
           max-width: 100%;
+          max-height: 40vh;
+          outline: 1px dashed;
+          outline-offset: 4px;
         }
 
         figure {
           margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         ::slotted(p) {

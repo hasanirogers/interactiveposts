@@ -5,10 +5,18 @@ class IPPMHex extends LitElement {
     return [
       css`
         :host {
-          display: flex;
-          margin: auto;
-          width: 320px;
-          height: 500px;
+          display: none;
+        }
+
+        @media screen and (min-width: 960px) {
+          :host {
+            display: flex;
+            margin: auto;
+            width: 320px;
+            height: 500px;
+            position: relative;
+            left: -4rem;
+          }
         }
 
         #Polygon-1,

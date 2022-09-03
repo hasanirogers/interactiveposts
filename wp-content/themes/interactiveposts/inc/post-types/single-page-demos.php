@@ -1,18 +1,18 @@
 <?php
   function ippm_post_type_single_page_demos() {
-    $labels = array(
-      'name'          => 'Single Page Demos', // Plural name
-      'singular_name' => 'Single Page Demo'   // Singular name
-    );
+    $labels = [
+      'name'          => 'Single Demos', // Plural name
+      'singular_name' => 'Single Demo'   // Singular name
+    ];
 
-    $supports = array(
+    $supports = [
       'title',        // Post title
       'excerpt',      // Excerpt text
       'thumbnail',    // Allows feature images
       'custom-fields' // Supports by custom fields
-    );
+    ];
 
-    $args = array(
+    $args = [
       'labels'              => $labels,
       'description'         => 'Single page demo', // Description
       'supports'            => $supports,
@@ -30,7 +30,7 @@
       'exclude_from_search' => true, // Excludes posts of this type in the front-end search result page if set to true, include them if set to false
       'publicly_queryable'  => false,  // Allows queries to be performed on the front-end part if set to true
       'capability_type'     => 'page', // Allows read, edit, delete like “Post”
-    );
+    ];
 
     register_post_type('single-page-demo', $args);
   }

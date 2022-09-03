@@ -11,7 +11,7 @@ class IPPMNav extends LitElement {
           position: relative;
         }
 
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: 960px) {
           :host{
             display: flex;
           }

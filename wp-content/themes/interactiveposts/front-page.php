@@ -5,21 +5,21 @@
 <main>
   <section data-anchor="intro">
     <div>
-      <ippm-intro>
-        <ippm-hex></ippm-hex>
-        <div>
-          <h2>Interactive Posts</h2>
-          <h3>IPPM: A WordPress Package Manager</h3>
-          <p>Craft beautiful and highly interactive posts with WordPress packages. Packages contain assets that can be attached to each post to enhance the experience.</p>
-          <p><ippm-button link="https://wordpress.org/plugins/interactive-posts-ippm/">Download @WordPress</ippm-button></p>
-          <br />
-          <ippm-nav hide-bar></ippm-nav>
-        </div>
-      </ippm-intro>
+      <?php
+        $homepage = get_posts([
+          'name'      => 'home',
+          'post_type' => 'page'
+        ]);
+
+        if ($homepage) {
+          echo $homepage[0]->post_content;
+        }
+      ?>
     </div>
   </section>
   <section data-anchor="demo">
     <div>
+      <h2>Demo</h2>
       <ippm-gallery-container>
         <label>
           Show:&nbsp;&nbsp;
@@ -33,73 +33,42 @@
           </select>
         </label>
         <ippm-gallery>
-          <ippm-card
-            size="2x2"
-            image="https://burst.shopifycdn.com/photos/aerial-photo-of-paved-road-surrounded-by-trees.jpg"
-            data-groups='["nature"]'
-            heading="Nature 1">
-          </ippm-card>
-          <ippm-card
-            size="2x1"
-            image="https://burst.shopifycdn.com/photos/tech-meeting-flatlay.jpg"
-            data-groups='["business"]'
-            heading="Business 1">
-          </ippm-card>
-          <ippm-card
-            size="2x1"
-            image="https://burst.shopifycdn.com/photos/grey-and-white-cat.jpg"
-            data-groups='["animal"]'
-            heading="Animal 2">
-          </ippm-card>
-          <ippm-card
-            size="1x1"
-            image="https://burst.shopifycdn.com/photos/hand-holds-up-a-two-scoop-ice-cream-cone.jpg"
-            data-groups='["food"]'
-            heading="Food 1">
-          </ippm-card>
-          <ippm-card
-            size="1x1"
-            image="https://burst.shopifycdn.com/photos/open-laptop-and-cell-phone-on-table.jpg"
-            data-groups='["business"]'
-            heading="Business 2">
-          </ippm-card>
-          <ippm-card
-            size="2x1"
-            image="https://burst.shopifycdn.com/photos/woman-grasping-flowers.jpg"
-            data-groups='["beauty"]'
-            heading="Beauty 1">
-          </ippm-card>
-          <ippm-card
-            size="1x1"
-            image="https://burst.shopifycdn.com/photos/makeup-powders-and-brush.jpg"
-            data-groups='["beauty"]'
-            heading="Beauty 2">
-          </ippm-card>
-          <ippm-card
-            size="1x1"
-            image="https://burst.shopifycdn.com/photos/person-enjoys-lunch-alone-in-a-sunlit-restaurant.jpg"
-            data-groups='["food"]'
-            heading="Food 2">
-          </ippm-card>
-          <ippm-card
-            size="1x1"
-            image="https://burst.shopifycdn.com/photos/green-snake-on-black-background.jpg"
-            data-groups='["animal"]'
-            heading="Animal 1">
-          </ippm-card>
+          <?php
+            $cardArgs = [
+              'post_type' => 'cards',
+              'post_status' => 'publish',
+              'posts_per_page' => 99,
+              'order' => 'ASC'
+            ];
+
+            $cardLoop = new WP_Query($cardArgs);
+
+            while ($cardLoop->have_posts()) : $cardLoop->the_post();
+              $cardMeta = [
+                'size'  => get_post_meta(get_the_ID(), 'size'),
+                'image' => get_post_meta(get_the_ID(), 'image'),
+                'group' => get_post_meta(get_the_ID(), 'group'),
+              ];
+
+              echo '<ippm-card heading="'. get_the_title() .'" image="'. $cardMeta['image'][0] .'" size="'. $cardMeta['size'][0] .'" group=\'["'. $cardMeta['group'][0] .'"]\'></ippm-card>';
+            endwhile;
+
+            wp_reset_postdata();
+          ?>
         </ippm-gallery>
       </ippm-gallery-container>
     </div>
   </section>
   <section data-anchor="spd">
     <div>
+      <h2>Single Page Demos</h2>
       <ippm-demo-cards>
         <?php
-          $spdArgs = array(
+          $spdArgs = [
             'post_type' => 'single-page-demo',
             'post_status' => 'publish',
             'posts_per_page' => 99,
-          );
+          ];
 
           $spdLoop = new WP_Query($spdArgs);
 
@@ -115,16 +84,17 @@
   </section>
   <section data-anchor="screenshots">
     <div>
+      <h2>Screenshots</h2>
       <ippm-screenshots class="glide">
         <ippm-screenshots-track class="glide__track" data-glide-el="track">
           <ippm-screenshots-slides class="glide__slides">
             <?php
-              $screenshotsArgs = array(
+              $screenshotsArgs = [
                 'post_type' => 'screenshots',
                 'post_status' => 'publish',
                 'order' => 'ASC',
                 'posts_per_page' => 99
-              );
+              ];
 
               $screenshotsLoop = new WP_Query($screenshotsArgs);
 
@@ -136,12 +106,12 @@
         </ippm-screenshots-track>
         <ippm-screenshots-bullets data-glide-el="controls[nav]">
           <?php
-            $bulletsArgs = array(
+            $bulletsArgs = [
               'post_type' => 'screenshots',
               'post_status' => 'publish',
               'order' => 'ASC',
               'posts_per_page' => 99
-            );
+            ];
 
             $index = 0;
             $bulletsLoop = new WP_Query($bulletsArgs);
@@ -159,7 +129,27 @@
   </section>
   <section data-anchor="faqs">
     <div>
-      <!-- <h2>FAQs</h2> -->
+      <h2>FAQs</h2>
+      <ippm-faqs>
+        <?php
+          $faqsArgs = [
+            'post_type' => 'faqs',
+            'post_status' => 'publish',
+            'posts_per_page' => 99
+          ];
+
+          $faqsLoop = new WP_Query($faqsArgs);
+
+          while ($faqsLoop->have_posts()) : $faqsLoop->the_post();
+            echo '
+              <details>
+                <summary>'. get_the_title() .'</summary>
+                '. get_the_content() .'
+              </details>
+            ';
+          endwhile;
+        ?>
+      </ippm-faqs>
     </div>
   </section>
 </main>
