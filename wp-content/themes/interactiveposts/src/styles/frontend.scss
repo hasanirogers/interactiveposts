@@ -33,10 +33,17 @@ body > header svg {
 }
 
 body > header > section {
+  position: static;
+  max-width: 1024px;
+  margin: auto;
+  padding: 1rem;
+}
+
+body.ippm--home > header > section {
   position: fixed;
   z-index: 9;
   width: 100%;
-  padding: 1rem;
+  max-width: none;
 }
 
 main,
@@ -85,9 +92,9 @@ main > section[data-anchor="screenshots"] > div {
 }
 
 main > section > article {
-  display: inline-flex;
-  min-width: 940px;
+  min-width: calc(940px + 2rem);
   padding: 1rem;
+  margin-bottom: 10rem;
   border: var(--dashed-border);
 }
 
@@ -101,7 +108,7 @@ ippm-banner {
     display: grid;
     gap: 0.5rem;
     align-items: center;
-    grid-template-columns: auto auto 1fr;
+    grid-template-columns: auto 1fr;
   }
 
   h1 {
@@ -117,6 +124,14 @@ ippm-banner {
     font-size: 0.9rem;
     margin: 0;
     font-weight: normal;
+  }
+
+  a {
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    color: inherit;
+    text-decoration: none;
   }
 }
 

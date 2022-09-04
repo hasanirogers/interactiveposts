@@ -12,7 +12,7 @@ class IPPMNav extends LitElement {
         }
 
         @media screen and (min-width: 960px) {
-          :host{
+          :host(:not([hidden])) {
             display: flex;
           }
         }
