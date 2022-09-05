@@ -1,0 +1,16 @@
+{
+  "name": "ippm",
+  "version": "0.0.1",
+  "description": "Repo for ippm.hasanirogers.me",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "node deploy.js",
+    "deploy:dev": "node deploy.js --dev"
+  },
+  "author": "Hasani Rogers <dev@hasanirogers.me>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "ssh2-sftp-client": "^9.0.3"
+  }
+}
